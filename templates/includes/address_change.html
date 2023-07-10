@@ -1,0 +1,48 @@
+
+<div>
+    <div class="box">
+        <form method="POST" action="/address_info_return/">
+            <div class="title">
+                <h4>
+                    <span class="fas fa-home"></span>
+                    <span>Address</span>
+
+
+
+                </h4>
+                <table style="border-collapse:separate;border-spacing:20px ;">
+                    <tr>
+                        <td style="font-weight:bold;width:14%">Name : </td>
+                        <td>{{form.name(class="form-control form-control-lg")}}</td>
+                    </tr>
+
+                    <tr>
+                        <td style="font-weight:bold;">Address Line : </td>
+                        <td>{{form.addressLine(class="form-control form-control-lg")}}</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight:bold;">City :</td>
+                        <td>{{form.city(class="form-control form-control-lg")}}</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight:bold;">Postal Code : </td>
+                        <td>{{form.postalCode(class="form-control form-control-lg")}}</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight:bold;">Country : </td>
+                        <td>{{form.country(class="form-control form-control-lg")}}</td>
+                    </tr>
+                </table>
+
+
+            <div class="form-group">
+                    {{form.submit(class="btn btn-primary")}}
+                    {{form.cancel(class="btn btn-danger" )}}
+            </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+

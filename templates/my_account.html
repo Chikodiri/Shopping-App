@@ -1,0 +1,67 @@
+{% extends 'header.html' %}
+{% block head %}
+{{ super() }}
+
+{% include 'includes/borrowed_style.html' %}
+<style>
+    div.example1{
+        background: #F6F7FB;
+        margin-top:30 px;
+        padding: 30px;
+        box-sizing:border-box;
+        margin-left:2rem;
+        width:50%;
+        margin-right:3rem;
+        text-align: left;
+        line-height: 24px;
+
+
+    }
+
+</style>
+
+{% endblock head %}
+{% import "includes/my_account_sidebar.html" as macros %}
+
+
+{% block content %}
+
+<div class="row topgap">
+
+    <div class="example1 col-md-2 "  >
+
+        {{macros.build_site_navigation_my_account(pages=pages, selected="Page Name")}}
+
+    </div>
+
+    <div class="col-md-8">
+      <div id="my_account_data" >
+          {% block name %}
+          this is sidebar
+          {% endblock %}</div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    function RenderRequestedPage(url){
+     $.ajax({
+     url: url,
+     type: "GET",
+     dataType: "html",
+     //data: {'option_id':option_id},
+     success: function(data){
+       $('#my_account_data').html(data)
+      /* HERE I WANT TO ITERATE THROUGH THE data LIST OF OBJECTS */
+     },
+     error: function(xhr){
+     alert('Request Status: ' + xhr.status + ' Status Text: ' + xhr.statusText);
+     $('#my_account_data').html(xhr.responseText)
+     }
+
+   });
+}
+</script>
+
+{% endblock %}
+

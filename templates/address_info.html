@@ -1,0 +1,51 @@
+<!--{{ tpl1 | safe }}-->
+<div>
+    <div class="box">
+        <div class="title">
+            <h4>
+                <span class="fas fa-home"></span>
+                <span>Address</span>
+                <div style="float:right; margin-right:60px; font-size:18px">
+                    <button class="btn ex" onclick = "RenderRequestedPage({{url_for('change_address')}})" >Edit Address</button>
+                </div>
+
+            </h4>
+            <table style="border-collapse:separate;border-spacing:20px ;">
+                <tr>
+                    <td style="font-weight:bold;width:14%">Name : </td>
+                    <td>{{order['name']}}</td>
+                </tr>
+
+                <tr>
+                    <td style="font-weight:bold;">Address Line : </td>
+                    <td >{{order['address']}}</td>
+                </tr>
+                <tr>
+                    <td style="font-weight:bold;">City :</td>
+                    <td>{{order['city']}}</td>
+                </tr>
+                <tr>
+                    <td style="font-weight:bold;">Postal Code : </td>
+                    <td>{{order['post_code']}}</td>
+                </tr>
+
+            </table>
+
+        </div>
+
+    </div>
+</div>
+<div style="float:left; font-size:18px">
+
+    <button class="btn ex"onclick = "RenderRequestedPage({{url_for('change_address')}})" id="new_address"><span class="fa fa-plus-square-o"></span> New Address</button>
+</div>
+<style>
+    .ex{
+        border: 1px solid;
+        border-color: #ccc #ccc #bbb;
+        border-radius: 3px;
+        background: #e6e6e6;
+        color: rgba(0, 0, 0, 0.8);
+        line-height: 1;
+    }
+</style>

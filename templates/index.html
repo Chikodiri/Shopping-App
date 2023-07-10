@@ -1,0 +1,156 @@
+{% extends 'header.html' %}
+
+{% block content %}
+    <section id = "banner">
+        <div class= "banner-text">
+            <h1> PriceMart</h1>
+            <p>Feed your family the best, while spending less!</p>
+            <div class ="banner-btn">
+                <a href ="#promo"><span></span>Products On Sale</a>
+                <a href="{{ url_for('products') }}"><span></span>Shop Now</a>
+            <br>
+            <br>
+            <h3>We Deliver Free Anywhere in Toronto with a minimum order worth CAD 15</h3>
+            </div>
+        </div>
+    </section>
+    <div id ="sideNav" class = "topgap">
+        <nav>
+        <ul>
+            <li><a href="#banner">HOME</a></li>
+            <li><a href="#promo">DEALS AND PROMOTIONS</a></li>
+            <li><a href="#delivery">DELIVERY TERMS</a></li>
+            <li><a href="#feature">ABOUT US</a></li>
+            <li><a href="#footer">CONTACT US</a></li>
+        </ul>
+        </nav>
+    </div>
+    <div id = "menuBtn" class = "topgap">
+        <img src="/static/images/menu.png" id="menu">
+    </div>
+
+    <section>
+        <div id ="promo">
+            <div class = "title-text">
+                <p>DEALS AND PROMOTIONS</p>
+                <h1>Products On Sale</h1>
+            </div>
+            <div class ="promo-row">
+                {% for product in products %}
+
+                <div class = "promo-col">
+                    <form method="POST" action="/add">
+                    <div class ="user">
+                        <img src = "/static/images/ProductImages/{{ product['image'] }}">
+                        <div class = "user-info">
+                            <input type="hidden" name="barcode" value="{{ product['barcode'] }}"/>
+                            <input type="hidden" name="price" value="{{ product['price'] }}"/>
+
+                            <h6>Normal Price: ${{ product['price'] }}</h6>
+
+                            <h3>Promo Price: ${{ '{:,.2f}'.format(product['price'] - (product['price'] * product['discount']/100))  }}</h3>
+                            <br>
+                            <input type="hidden" name = "quantity" value="1"/>
+                            <input type="submit" value="Add to Cart" class=" btn btn-info"/>
+                        </div>
+
+                    </div>
+
+                        <h5><u>{{product['product_name']}} {{product['size']}}</u></h5>
+                        <h8><i>{{product['description']}}</i></h8>
+
+                    </form>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <section id ="delivery">
+        <div class = "title-text">
+            <p>DELIVERY</p>
+            <h1>Terms and Conditions</h1>
+        </div>
+              <div class ="delivery-boxText">
+                  <div class ="delivery-terms">
+                      <p>1. Free delivery anywhere in Toronto with a minimum order worth CAD 15. </p>
+                      <p>2. We are at your doorstep within 3 hours after check out!</p>
+                      <p>3. Someone must be home to receive your order. If you need to cancel or change your delivery time, you <br>
+                            must call and speak with your PriceMart local store directly to make the change. You should call at <br>
+                            least 2 hours before the scheduled delivery time.</p>
+                  </div>
+        </div>
+        <div class = "delivery-box">
+            <div class ="single-delivery">
+                <img src ="/static/images/deliveryfree.jpg">
+                <div class ="overlay"></div>
+                <div class="delivery-desc">
+                </div>
+
+</section>
+ <section id ="feature">
+    <div class = "title-text">
+        <p>ABOUT THE COMPANY</p>
+        <h1>PriceMart </h1>
+    </div>
+    <div class = "feature-box">
+        <div class ="features">
+            <h4>OUR COMPANY</h4>
+            <div class="features-desc">
+                <div class ="feature-icon">
+                    <i class="fa fa-building-o"></i>
+                </div>
+                <div class ="feature-text">
+                    <p>PriceMart Inc. was established on January 2, 1996. Twenty-five years into the industry,
+                        PriceMart has grown into a strong, friendly, and most trusted grocery store in Toronto.<br>
+                        We understand that our customers have the right to good food and drinks, that is why we are
+                        committed to providing only the best quality of our products for everyone.<br>
+                        In 2020, PriceMart had garnered two major awards as one of the <br>
+                        Greater Toronto’s Top Employers and Outstanding Philanthropist of the Year.</p>
+                </div>
+            </div>
+            <h4>OUR AIM</h4>
+            <div class="features-desc">
+                <div class ="feature-icon">
+                    <i class="fa fa-bullseye"></i>
+                </div>
+                <div class ="feature-text">
+                    <p> We want to offer you the best online shopping experience. Here at PriceMart, we always aim to give our
+                        customers what they deserve: convenience, quality, affordability, and everything in-between. </p>
+
+                </div>
+            </div>
+
+        </div>
+        <div class ="features-img">
+            <img src = "/static/images/store.jpg">
+        </div>
+    </div>
+</section>
+
+{% include 'includes/footer.html' %}
+
+</section>
+
+
+    <script>
+    var menuBtn = document.getElementById("menuBtn")
+    var sideNav = document.getElementById("sideNav")
+    var menu = document.getElementById("menu")
+    menuBtn.onclick = function() {
+        if(sideNav.style.right == "-250px"){
+            sideNav.style.right = "0";
+            menu.src ="/static/images/close.png";
+        }
+        else{
+            sideNav.style.right = "-250px";
+            menu.src ="/static/images/menu.png";
+        }
+    }
+var scroll = new SmoothScroll('a[href*="#"]', {
+speed: 1000,
+speedAsDuration: true
+});
+</script>
+    </section>
+{% endblock content %}
+
